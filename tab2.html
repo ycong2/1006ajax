@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서버가 있어야지만 구현가능한 비동기통신</title>
+    <style>
+        .act{
+            background-color: red;
+            color: white;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <!-- 제이쿼리 ajax load 로 검색 -->
+    <script>
+        $(document).ready(() => {
+
+            loadcontent("/db/way.html");
+           
+           
+            $(".tabwap button").click(function(){
+                loadcontent($(this).data("obj"));
+            })
+
+           
+            function loadcontent(obj){
+                $('.tabContent').load(`${obj}`);               
+                $(`[data-obj="${obj}"]`).addClass("act").siblings().removeClass("act");
+               
+            }
+              
+
+            // 값을 태그가 가져가고 함수는 매개인자를 사용
+
+        })
+    </script>
+</head>
+<body>
+    <div class="tabwap">    
+        <button class="tabbtn" data-obj="/db/tabcontent.html #abouttab">회사소개</button>
+        <button class="tabbtn" data-obj="/db/ceo.html">ceo인사말</button>
+        <button class="tabbtn" data-obj="/db/way.html">오시는길</button>
+    </div>
+    <div class="tabContent">
+
+    </div>
+</body>
+</html>
+
+<!-- // 모두 회사소개버튼의 다른 표현
+// $(".tabwap>button:nth-child(1)")
+// $(".tabwap>button:first-child")
+// $(".tabwap>button:eq(0)")
+// $(".tabwap>button").eq(0)
+// $(".tabwap>tabbtn").eq(0)
+// $("[data-obj='#abouttab'][class='tabbtn']") -->
+
+
+
+
+<!-- $("button[data-obj^='#']") -> 3개모두
+
+$("tabbtn.act") ->활성화 버튼
+$("tabbtn.not(act)") ->활성화 안된 버튼
+
+
+$(".tabwab [data-obj='#ceotab']")
+$("[data-obj='#ceotab']")
+$("button[data-obj]='#ceotab']")
+$(.tabbtn[data-obj='#ceotab']")
+$(".tabbtn[data-obj='#abouttab'] + button")
+$(".tabbtn > button").ep(1) -->
+
+<!-- 닷홈 서버점검 - sftp f1 호출하여 연결 - 확인 -->

@@ -1,0 +1,16 @@
+{
+    "sns" :[
+        {
+            "nm" : "git",
+            "href": "http://www.github.com"
+        },
+        {
+            "nm" : "youtube",
+            "href": "http://www.youtube.com"
+        },
+        {
+            "nm" : "instagram",
+            "href": "http://www.instagram.com"
+        }
+    ]
+}

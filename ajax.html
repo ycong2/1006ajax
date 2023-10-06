@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비동기통신다루기</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(()=>{
+            $.ajax({
+                type : "GET",      /*서버한테 갈껀데 데이터 짧게  글자데이터만 가지고 갈께 256byte 안넘을께   cf)post:보안 put delete*/
+                url : "/json/navi.json",
+                dataType : "json",
+                success : function(data){
+                    console.log(data.sns, typeof data.sns)
+
+
+                    // data.sns.map(()=>{
+                    //     $("nav ul").append("li><a href=''>"+el+'</a></li>')
+                    // })                
+                    // $("nav").html    
+
+
+                    // var litage = "";
+                    // data.sns.map((el, idx) =>{
+                    //     litage +="<li><a href=''>"+el+'</a></li>';
+                    // })
+
+                    var navtag ="";
+                    for(i in data.sns){
+                        navtag +=`<li>
+                            <a href="${data.sns[i].href}">
+                                ${data.sns[i].nm}</a>
+                            </li>`
+                    }
+                    $("nav ul").html(navtag)
+
+
+
+
+                },
+                error : function(err){
+                    console.log(err)
+                }
+
+            })
+        })
+    </script>
+</head>
+<body>
+    <nav>
+        <ul>
+            
+        </ul>
+
+    </nav>
+</body>
+</html>
+
+
+<!-- 서울공공데이터 가서 연결 -->
+
+
+<!-- 제이쿼리를 이용한 ajax
+$.ajax({
+    type : 'post',           // 타입 (get, post, put 등등)
+    url : '/test',           // 요청할 서버url
+    async : true,            // 비동기화 여부 (default : true)
+    headers : {              // Http header
+      "Content-Type" : "application/json",
+      "X-HTTP-Method-Override" : "POST"
+    },
+    dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
+    data : JSON.stringify({  // 보낼 데이터 (Object , String, Array)
+      "no" : no,
+      "name" : name,
+      "nick" : nick
+    }),
+    success : function(result) { // 결과 성공 콜백함수
+        console.log(result);
+    },
+    error : function(request, status, error) { // 결과 에러 콜백함수
+        console.log(error)
+    }
+}) -->

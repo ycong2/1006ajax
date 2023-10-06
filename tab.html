@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서버가 있어야지만 구현가능한 비동기통신</title>
+    <style>
+        .act{
+            background-color: red;
+            color: white;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <!-- 제이쿼리 ajax load 로 검색 -->
+    <script>
+        $(document).ready(() => {
+
+            loadcontent("#waytab");
+            // 화면이 열리자마자 실행(오시는길이 노출되도록 처리)
+
+            $(".tabwap button").click(function(){
+                // 버튼들을 클릭하면
+                loadcontent($(this).data("obj"));
+                플릭한 버튼의 data-obj의 아이디객체 로딩하고 버튼 활성화해라.
+            })
+
+
+            $(".tabwap button").click(function(){
+                loadcontent($(this).data("obj"));
+            })
+
+            // this 개념이 다르다
+            // 화살표함수와 일반함수   this가 있으면 화살표함수 사용못함
+
+            function loadcontent(obj){
+                $('.tabContent').load(`/db/tabcontent.html ${obj}`);
+                // 특정객체의 컨텐츠를 가져와서 .tabContent 객체에 출력해라
+                $(`[data-obj="${obj}"]`).addClass("act").siblings().removeClass("act");
+                // data-obj라는 속성의 값이 매개인자와 동일한 객체는 활성화하고 형제태그들은 비활성처리해라
+            }
+              /*하위는 공백으로 처리*/
+
+           
+
+        })
+    </script>
+</head>
+<body>
+    <!-- 시간이 발생되는 작업  서버능력에 따라 데이터 상환이 언제일지 몰라    비동기통신이라함-->
+    <div class="tabwap">
+        <button class="tabbtn" data-obj="#abouttab">회사소개</button>
+        <button class="tabbtn" data-obj="#ceotab">ceo인사말</button>
+        <button class="tabbtn" data-obj="#waytab">오시는길</button>
+    </div>
+    <div class="tabContent">
+
+    </div>
+</body>
+</html>
+
+<!-- // 모두 회사소개버튼의 다른 표현
+// $(".tabwap>button:nth-child(1)")
+// $(".tabwap>button:first-child")
+// $(".tabwap>button:eq(0)")
+// $(".tabwap>button").eq(0)
+// $(".tabwap>tabbtn").eq(0)
+// $("[data-obj='#abouttab'][class='tabbtn']") -->
+
+
+
+
+<!-- $("button[data-obj^='#']") -> 3개모두
+
+$("tabbtn.act") ->활성화 버튼
+$("tabbtn.not(act)") ->활성화 안된 버튼
+
+
+$(".tabwab [data-obj='#ceotab']")
+$("[data-obj='#ceotab']")
+$("button[data-obj]='#ceotab']")
+$(.tabbtn[data-obj='#ceotab']")
+$(".tabbtn[data-obj='#abouttab'] + button")
+$(".tabbtn > button").ep(1) -->
+
+<!-- 닷홈 서버점검 - sftp f1 호출하여 연결 - 확인 -->
